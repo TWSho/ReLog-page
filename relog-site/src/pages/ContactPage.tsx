@@ -6,6 +6,7 @@ const PageContainer = styled.div`
   padding: 8rem 2rem 4rem;
   max-width: 800px;
   margin: 0 auto;
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
 const PageTitle = styled.h1`

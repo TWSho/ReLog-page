@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 
 import { theme } from './styles/theme';
@@ -10,6 +11,10 @@ import Footer from './components/Footer';
 import HomePage from './pages/HomePage';
 import PrivacyPage from './pages/PrivacyPage';
 import ContactPage from './pages/ContactPage';
+
+const Main = styled.main`
+  background-color: ${({ theme }) => theme.colors.white};
+`;
 
 function App() {
   return (
@@ -23,13 +28,13 @@ function App() {
           <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet" />
         </Helmet>
         <Header />
-        <main>
+        <Main>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/contact" element={<ContactPage />} />
           </Routes>
-        </main>
+        </Main>
         <Footer />
       </Router>
     </ThemeProvider>

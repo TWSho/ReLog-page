@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet';
 
 const HomeContainer = styled.div`
   padding-top: 5rem; /* Space for fixed header */
+  background-color: ${({ theme }) => theme.colors.white};
 `;
 
 const Hero = styled.section`
