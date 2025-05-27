@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/ReLog-page/static/js/main.da0af8e6.js",
+    "static/js/453.971e31a6.chunk.js": "/ReLog-page/static/js/453.971e31a6.chunk.js",
+    "index.html": "/ReLog-page/index.html",
+    "main.da0af8e6.js.map": "/ReLog-page/static/js/main.da0af8e6.js.map",
+    "453.971e31a6.chunk.js.map": "/ReLog-page/static/js/453.971e31a6.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.da0af8e6.js"
+  ]
+}
