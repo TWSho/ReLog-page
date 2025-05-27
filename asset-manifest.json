@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/ReLog-page/static/js/main.4d3d66f2.js",
+    "main.js": "/ReLog-page/static/js/main.15582ddc.js",
     "static/js/453.971e31a6.chunk.js": "/ReLog-page/static/js/453.971e31a6.chunk.js",
     "index.html": "/ReLog-page/index.html",
-    "main.4d3d66f2.js.map": "/ReLog-page/static/js/main.4d3d66f2.js.map",
+    "main.15582ddc.js.map": "/ReLog-page/static/js/main.15582ddc.js.map",
     "453.971e31a6.chunk.js.map": "/ReLog-page/static/js/453.971e31a6.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.4d3d66f2.js"
+    "static/js/main.15582ddc.js"
   ]
 }
