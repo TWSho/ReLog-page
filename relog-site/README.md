@@ -2,6 +2,11 @@
 
 恋愛ログアプリ「ReLog」の公式ウェブサイトです。
 
+## サイトURL
+
+公式サイトは以下のURLでアクセスできます：
+[https://twsho.github.io/ReLog-page/](https://twsho.github.io/ReLog-page/)
+
 ## 概要
 
 このウェブサイトは以下の目的で作成されています:
@@ -40,6 +45,21 @@ npm run build
 
 ```bash
 npm run serve
+```
+
+### GitHub Pagesへのデプロイ
+
+このサイトはGitHub Pagesを使用してデプロイされています。
+更新をデプロイするには：
+
+```bash
+npm run deploy
+```
+
+または、リポジトリのルートディレクトリから：
+
+```bash
+./deploy.sh
 ```
 
 ## サイト構成

@@ -2,6 +2,11 @@
 
 恋愛ログアプリ「ReLog」の公式ウェブサイトプロジェクトです。
 
+## サイトURL
+
+公式サイトは以下のURLでアクセスできます：
+[https://twsho.github.io/ReLog-page/](https://twsho.github.io/ReLog-page/)
+
 ## プロジェクト構成
 
 - `Doc/` - 仕様書やリソース
