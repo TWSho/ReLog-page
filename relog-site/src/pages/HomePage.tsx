@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
+import { useTranslation } from 'react-i18next';
 
 const HomeContainer = styled.div`
   padding-top: 5rem; /* Space for fixed header */
@@ -91,67 +92,50 @@ const AppStoreImage = styled.img`
 `;
 
 const HomePage: React.FC = () => {
+  const { t } = useTranslation();
+  
+  // Define the features array with type annotation
+  const features = t('homePage.featureSection.features', { returnObjects: true }) as { title: string; description: string }[];
+  
   return (
     <HomeContainer>
       <Helmet>
-        <title>ReLog - 大切な人との思い出を、ずっと記録に。</title>
-        <meta name="description" content="恋愛ログアプリ「ReLog」は、交際期間やイベントを簡単に記録・振り返りできるアプリです。" />
-        <meta property="og:title" content="ReLog - 大切な人との思い出を、ずっと記録に。" />
-        <meta property="og:description" content="恋愛ログアプリ「ReLog」は、交際期間やイベントを簡単に記録・振り返りできるアプリです。" />
+        <title>{t('homePage.title')}</title>
+        <meta name="description" content={t('homePage.meta.description')} />
+        <meta property="og:title" content={t('homePage.title')} />
+        <meta property="og:description" content={t('homePage.meta.description')} />
         <meta property="og:image" content="/icon_nobg.png" />
         <meta property="og:type" content="website" />
       </Helmet>
       
       <Hero>
-        <Catchphrase>大切な人との思い出を、ずっと記録に。</Catchphrase>
+        <Catchphrase>{t('homePage.catchphrase')}</Catchphrase>
         <AppDescription>
-          ReLogは、交際期間やイベントを簡単に記録・振り返りできる恋愛ログアプリです。
+          {t('homePage.appDescription')}
         </AppDescription>
         <AppStoreLink href="https://apps.apple.com/jp/app/relog/id1234567890" target="_blank" rel="noopener noreferrer">
-          <AppStoreImage src={`${process.env.PUBLIC_URL}/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg`} alt="App Storeからダウンロード" />
+          <AppStoreImage src={`${process.env.PUBLIC_URL}/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg`} alt={t('homePage.appStoreAlt')} />
         </AppStoreLink>
       </Hero>
       
       <FeatureSection>
-        <SectionTitle>ReLogの特徴</SectionTitle>
+        <SectionTitle>{t('homePage.featureSection.title')}</SectionTitle>
         <FeatureList>
-          <FeatureItem>
-            <FeatureTitle>関係の管理</FeatureTitle>
-            <FeatureDescription>
-              大切な関係（Relationship）を簡単に登録・編集・削除できます。
-            </FeatureDescription>
-          </FeatureItem>
-          <FeatureItem>
-            <FeatureTitle>交際期間のカウント</FeatureTitle>
-            <FeatureDescription>
-              交際期間を日数/年月日で自動計算。非表示にすることも可能です。
-            </FeatureDescription>
-          </FeatureItem>
-          <FeatureItem>
-            <FeatureTitle>イベント記録</FeatureTitle>
-            <FeatureDescription>
-              記念日や大切な出来事を記録して、いつでも振り返ることができます。
-            </FeatureDescription>
-          </FeatureItem>
-          <FeatureItem>
-            <FeatureTitle>タイムライン表示</FeatureTitle>
-            <FeatureDescription>
-              登録したイベントを時系列で一覧表示。思い出を簡単に振り返れます。
-            </FeatureDescription>
-          </FeatureItem>
-          <FeatureItem>
-            <FeatureTitle>終了日設定</FeatureTitle>
-            <FeatureDescription>
-              交際終了日を設定すると、カウントが自動的に停止します。
-            </FeatureDescription>
-          </FeatureItem>
+          {features.map((feature, index) => (
+            <FeatureItem key={index}>
+              <FeatureTitle>{feature.title}</FeatureTitle>
+              <FeatureDescription>
+                {feature.description}
+              </FeatureDescription>
+            </FeatureItem>
+          ))}
         </FeatureList>
       </FeatureSection>
       
       <DownloadSection>
-        <SectionTitle>さっそく使ってみる</SectionTitle>
+        <SectionTitle>{t('homePage.downloadSection.title')}</SectionTitle>
         <AppStoreLink href="https://apps.apple.com/jp/app/relog/id1234567890" target="_blank" rel="noopener noreferrer">
-          <AppStoreImage src={`${process.env.PUBLIC_URL}/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg`} alt="App Storeからダウンロード" />
+          <AppStoreImage src={`${process.env.PUBLIC_URL}/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg`} alt={t('homePage.appStoreAlt')} />
         </AppStoreLink>
       </DownloadSection>
     </HomeContainer>

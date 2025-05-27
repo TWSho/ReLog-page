@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const HeaderContainer = styled.header`
   position: fixed;
@@ -94,8 +95,37 @@ const MenuItem = styled(Link)`
   }
 `;
 
+const MenuSection = styled.div`
+  margin-top: 1.5rem;
+  border-top: 1px solid ${({ theme }) => theme.colors.gray};
+  padding-top: 1rem;
+`;
+
+const MenuSectionTitle = styled.h3`
+  padding: 0.5rem 2rem;
+  font-size: 0.9rem;
+  color: ${({ theme }) => theme.colors.primary};
+  font-weight: bold;
+`;
+
+const LanguageButton = styled.button<{ isActive?: boolean }>`
+  display: block;
+  width: 100%;
+  padding: 0.8rem 2rem;
+  text-align: left;
+  font-size: 1rem;
+  background-color: ${({ isActive, theme }) => isActive ? theme.colors.lightGray : 'transparent'};
+  border: none;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.gray};
+  }
+`;
+
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t, i18n } = useTranslation();
   
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -105,6 +135,11 @@ const Header: React.FC = () => {
     setIsMenuOpen(false);
   };
   
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng);
+    closeMenu();
+  };
+  
   return (
     <HeaderContainer>
       <Logo to="/" onClick={closeMenu}>
@@ -112,16 +147,38 @@ const Header: React.FC = () => {
         <AppName>ReLog</AppName>
       </Logo>
       
-      <HamburgerButton isOpen={isMenuOpen} onClick={toggleMenu} aria-label="メニューを開く">
+      <HamburgerButton isOpen={isMenuOpen} onClick={toggleMenu} aria-label={t('header.menu')}>
         <span></span>
         <span></span>
         <span></span>
       </HamburgerButton>
       
       <Menu isOpen={isMenuOpen}>
-        <MenuItem to="/" onClick={closeMenu}>ホーム</MenuItem>
-        <MenuItem to="/privacy" onClick={closeMenu}>プライバシーポリシー</MenuItem>
-        <MenuItem to="/contact" onClick={closeMenu}>お問い合わせ</MenuItem>
+        <MenuItem to="/" onClick={closeMenu}>{t('header.home')}</MenuItem>
+        <MenuItem to="/privacy" onClick={closeMenu}>{t('header.privacy')}</MenuItem>
+        <MenuItem to="/contact" onClick={closeMenu}>{t('header.contact')}</MenuItem>
+        
+        <MenuSection>
+          <MenuSectionTitle>{t('header.language')}</MenuSectionTitle>
+          <LanguageButton 
+            onClick={() => changeLanguage('ja')} 
+            isActive={i18n.language === 'ja'}
+          >
+            {t('languageSwitcher.ja')}
+          </LanguageButton>
+          <LanguageButton 
+            onClick={() => changeLanguage('en')} 
+            isActive={i18n.language === 'en'}
+          >
+            {t('languageSwitcher.en')}
+          </LanguageButton>
+          <LanguageButton 
+            onClick={() => changeLanguage('zh')} 
+            isActive={i18n.language === 'zh'}
+          >
+            {t('languageSwitcher.zh')}
+          </LanguageButton>
+        </MenuSection>
       </Menu>
     </HeaderContainer>
   );
