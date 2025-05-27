@@ -47,7 +47,7 @@ const HamburgerButton = styled.button<{ isOpen: boolean }>`
   span {
     width: 100%;
     height: 3px;
-    background-color: ${({ theme }) => theme.colors.black};
+    background-color: ${({ theme }) => theme.colors.primary};
     transition: all 0.3s ease-in-out;
     position: absolute;
     left: 0;
@@ -86,7 +86,7 @@ const Menu = styled.nav<{ isOpen: boolean }>`
 const MenuItem = styled(Link)`
   display: block;
   padding: 1rem 2rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: ${({ theme }) => theme.colors.black};
   
   &:hover {
