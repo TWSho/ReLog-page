@@ -82,6 +82,7 @@ const Menu = styled.nav<{ isOpen: boolean }>`
   transform: ${({ isOpen }) => isOpen ? 'translateX(0)' : 'translateX(100%)'};
   transition: transform 0.3s ease-in-out;
   box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+  z-index: 100;
 `;
 
 const MenuItem = styled(Link)`
@@ -134,6 +135,17 @@ const LanguageButton = styled.button<{ isActive?: boolean }>`
   }
 `;
 
+const Overlay = styled.div<{ isOpen: boolean }>`
+  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.2);
+  z-index: 99;
+`;
+
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t, i18n } = useTranslation();
@@ -157,18 +169,17 @@ const Header: React.FC = () => {
         <LogoImage src={`${process.env.PUBLIC_URL}/icon_nobg.png`} alt="ReLog Logo" />
         <AppName>ReLog</AppName>
       </Logo>
-      
       <HamburgerButton isOpen={isMenuOpen} onClick={toggleMenu} aria-label={t('header.menu')}>
         <span></span>
         <span></span>
         <span></span>
       </HamburgerButton>
-      
+      {/* Overlay: メニュー展開時のみ表示し、クリックでメニューを閉じる */}
+      <Overlay isOpen={isMenuOpen} onClick={closeMenu} />
       <Menu isOpen={isMenuOpen}>
         <MenuItem to="/" onClick={closeMenu}>{t('header.home')}</MenuItem>
         <MenuItem to="/privacy" onClick={closeMenu}>{t('header.privacy')}</MenuItem>
         <MenuItem to="/contact" onClick={closeMenu}>{t('header.contact')}</MenuItem>
-        
         <MenuSection>
           <MenuSectionTitle>{t('header.language')}</MenuSectionTitle>
           <LanguageButton 
