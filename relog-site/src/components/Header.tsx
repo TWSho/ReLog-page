@@ -114,12 +114,23 @@ const LanguageButton = styled.button<{ isActive?: boolean }>`
   padding: 0.8rem 2rem;
   text-align: left;
   font-size: 1rem;
-  background-color: ${({ isActive, theme }) => isActive ? theme.colors.lightGray : 'transparent'};
+  background-color: transparent;
+  color: ${({ isActive, theme }) =>
+    isActive ? theme.colors.primary : theme.colors.black};
+  font-weight: ${({ isActive }) => (isActive ? 'bold' : 'normal')};
   border: none;
   cursor: pointer;
-  
+  transition: color 0.2s, font-weight 0.2s, background-color 0.2s;
+
   &:hover {
+    background-color: transparent;
+    color: ${({ theme }) => theme.colors.primary};
+  }
+
+  &:active {
     background-color: ${({ theme }) => theme.colors.gray};
+    color: ${({ isActive, theme }) =>
+      isActive ? theme.colors.primary : theme.colors.black};
   }
 `;
 
