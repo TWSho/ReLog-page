@@ -108,7 +108,7 @@ const HomePage: React.FC = () => {
           ReLogは、交際期間やイベントを簡単に記録・振り返りできる恋愛ログアプリです。
         </AppDescription>
         <AppStoreLink href="https://apps.apple.com/jp/app/relog/id1234567890" target="_blank" rel="noopener noreferrer">
-          <AppStoreImage src="/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="App Storeからダウンロード" />
+          <AppStoreImage src={`${process.env.PUBLIC_URL}/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg`} alt="App Storeからダウンロード" />
         </AppStoreLink>
       </Hero>
       
@@ -151,7 +151,7 @@ const HomePage: React.FC = () => {
       <DownloadSection>
         <SectionTitle>さっそく使ってみる</SectionTitle>
         <AppStoreLink href="https://apps.apple.com/jp/app/relog/id1234567890" target="_blank" rel="noopener noreferrer">
-          <AppStoreImage src="/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="App Storeからダウンロード" />
+          <AppStoreImage src={`${process.env.PUBLIC_URL}/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg`} alt="App Storeからダウンロード" />
         </AppStoreLink>
       </DownloadSection>
     </HomeContainer>

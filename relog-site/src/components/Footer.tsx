@@ -21,7 +21,7 @@ const Copyright = styled.p`
 const Footer: React.FC = () => {
   return (
     <FooterContainer>
-      <FooterLogo src="/icon_nobg.png" alt="ReLog Logo" />
+      <FooterLogo src={`${process.env.PUBLIC_URL}/icon_nobg.png`} alt="ReLog Logo" />
       <Copyright>© 2025 ReLog</Copyright>
     </FooterContainer>
   );

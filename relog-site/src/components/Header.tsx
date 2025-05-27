@@ -108,7 +108,7 @@ const Header: React.FC = () => {
   return (
     <HeaderContainer>
       <Logo to="/" onClick={closeMenu}>
-        <LogoImage src="/icon_nobg.png" alt="ReLog Logo" />
+        <LogoImage src={`${process.env.PUBLIC_URL}/icon_nobg.png`} alt="ReLog Logo" />
         <AppName>ReLog</AppName>
       </Logo>
       
