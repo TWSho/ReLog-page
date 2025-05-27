@@ -42,24 +42,31 @@ const HamburgerButton = styled.button<{ isOpen: boolean }>`
   border: none;
   cursor: pointer;
   z-index: 10;
+  position: relative;
   
   span {
     width: 100%;
     height: 3px;
     background-color: ${({ theme }) => theme.colors.black};
     transition: all 0.3s ease-in-out;
+    position: absolute;
+    left: 0;
     
     &:nth-child(1) {
-      transform: ${({ isOpen }) => isOpen ? 'rotate(45deg) translate(5px, 5px)' : 'rotate(0)'};
+      top: 0;
+      transform: ${({ isOpen }) => isOpen ? 'translateY(0.7rem) rotate(45deg)' : 'none'};
     }
     
     &:nth-child(2) {
+      top: 0.7rem;
       opacity: ${({ isOpen }) => isOpen ? '0' : '1'};
     }
     
     &:nth-child(3) {
-      transform: ${({ isOpen }) => isOpen ? 'rotate(-45deg) translate(7px, -6px)' : 'rotate(0)'};
+      top: 1.4rem;
+      transform: ${({ isOpen }) => isOpen ? 'translateY(-0.7rem) rotate(-45deg)' : 'none'};
     }
+  }
   }
 `;
 
