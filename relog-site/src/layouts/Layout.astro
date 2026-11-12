@@ -1,0 +1,65 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { copy, locales, languageNames, htmlLanguages, type Locale, type Page } from '../data/site';
+import '../styles/global.css';
+
+interface Props { locale: Locale; page?: Page; title?: string; noindex?: boolean }
+const { locale, page = '', title, noindex = false } = Astro.props;
+const t = copy[locale];
+const home = getRelativeLocaleUrl(locale, '');
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const pageTitle = title ? `${title} — ReLog` : `ReLog — ${t.tagline}`;
+---
+<!doctype html>
+<html lang={htmlLanguages[locale]}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#FF75B2" />
+    <meta name="description" content={t.description} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <title>{pageTitle}</title>
+    <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}icon_nobg.png`} />
+    <link rel="canonical" href={canonical} />
+    {locales.map((lang) => <link rel="alternate" hreflang={htmlLanguages[lang]} href={new URL(getRelativeLocaleUrl(lang, page), Astro.site)} />)}
+    <link rel="alternate" hreflang="x-default" href={new URL(getRelativeLocaleUrl('ja', page), Astro.site)} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ReLog" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={t.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={{ ja: 'ja_JP', en: 'en_US', zh: 'zh_TW' }[locale]} />
+    <meta property="og:image" content={new URL(`${import.meta.env.BASE_URL}social-card.png`, Astro.site)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`ReLog — ${t.tagline}`} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t.skip}</a>
+    <header class="site-header container">
+      <a class="wordmark" href={home} aria-label="ReLog">
+        <img src={`${import.meta.env.BASE_URL}icon_nobg.png`} width="64" height="64" alt="" />
+        ReLog
+      </a>
+      <nav class="main-nav" aria-label={locale === 'ja' ? 'メインナビゲーション' : locale === 'zh' ? '主要導覽' : 'Main navigation'}>
+        {t.nav.map((label, index) => <a href={`${home}#${['about', 'features', 'faq'][index]}`}>{label}</a>)}
+      </nav>
+      <nav class="languages" aria-label={t.language}>
+        {locales.map((lang) => <a href={getRelativeLocaleUrl(lang, page)} lang={htmlLanguages[lang]} aria-label={languageNames[lang]} aria-current={lang === locale ? 'true' : undefined}>{lang === 'ja' ? 'JP' : lang === 'en' ? 'EN' : '繁'}</a>)}
+      </nav>
+    </header>
+    <main id="main" tabindex="-1"><slot /></main>
+    <footer class="site-footer container">
+      <div class="footer-main">
+        <a class="wordmark" href={home}><img src={`${import.meta.env.BASE_URL}icon_nobg.png`} width="64" height="64" alt="" />ReLog</a>
+        <p>{t.tagline}</p>
+        <nav aria-label={locale === 'ja' ? 'フッター' : locale === 'zh' ? '頁尾' : 'Footer'}>
+          <a data-page="privacy" href={getRelativeLocaleUrl(locale, 'privacy')}>{t.privacy}</a>
+          <a data-page="contact" href={getRelativeLocaleUrl(locale, 'contact')}>{t.contact}</a>
+        </nav>
+      </div>
+      <div class="footer-bottom"><small>© {new Date().getFullYear()} WEIHISANG LIN</small></div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+---
+import Home from '../components/Home.astro';
+---
+<Home locale="ja" />
+<!-- The only client-side script: preserve privacy/contact links in existing iOS builds. -->
+<script>
+  const legacyPage = window.location.hash.match(/^#\/(privacy|contact)\/?$/)?.[1];
+  if (legacyPage) window.location.replace(`${import.meta.env.BASE_URL}${legacyPage}/`);
+</script>

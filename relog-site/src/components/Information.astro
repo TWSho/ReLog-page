@@ -1,0 +1,13 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { copy, links, type Locale } from '../data/site';
+interface Props { locale: Locale; page: 'privacy' | 'contact' }
+const { locale, page } = Astro.props;
+const t = copy[locale];
+---
+<Layout locale={locale} page={page} title={page === 'privacy' ? t.privacy : t.contact}>
+  <article class="information container">
+    <header class="information-header"><p class="eyebrow">{page === 'privacy' ? 'YOUR DATA, EXPLAINED' : 'LET’S KEEP IN TOUCH'}</p><h1>{page === 'privacy' ? t.privacy : t.contactTitle}</h1><p>{page === 'privacy' ? t.privacyIntro : t.contactIntro}</p>{page === 'privacy' && <span class="updated">{t.updated}</span>}</header>
+    {page === 'privacy' ? <div class="policy-body">{t.privacySections.map((section, index) => <section><p class="eyebrow">0{index + 1}</p><div><h2>{section.title}</h2><p>{section.text}</p></div></section>)}<nav class="policy-links" aria-label={t.privacy}><a href="https://www.apple.com/legal/privacy/">Apple Privacy Policy ↗</a></nav></div> : <div class="contact-grid"><section class="contact-card"><h2>{t.formTitle}</h2><p>{t.formText}</p><a class="button primary" href={links.contact}>{t.formCta}<span aria-hidden="true">↗</span></a></section><p class="contact-note">{t.contactNote}</p></div>}
+  </article>
+</Layout>

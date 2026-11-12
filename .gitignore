@@ -33,6 +33,9 @@ yarn-error.log
 # Build directories
 dist/
 build/
+.astro/
+playwright-report/
+test-results/
 
 # Environment variables
 .env

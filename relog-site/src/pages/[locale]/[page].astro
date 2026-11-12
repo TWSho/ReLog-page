@@ -1,0 +1,10 @@
+---
+import Information from '../../components/Information.astro';
+import type { Locale } from '../../data/site';
+export function getStaticPaths() {
+  return ['en', 'zh'].flatMap((locale) => ['privacy', 'contact'].map((page) => ({ params: { locale, page } })));
+}
+const locale = Astro.params.locale as Locale;
+const page = Astro.params.page as 'privacy' | 'contact';
+---
+<Information locale={locale} page={page} />

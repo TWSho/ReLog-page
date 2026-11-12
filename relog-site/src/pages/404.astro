@@ -1,0 +1,7 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getRelativeLocaleUrl } from 'astro:i18n';
+---
+<Layout locale="ja" title="ページが見つかりません" noindex>
+  <section class="not-found container"><p class="eyebrow">404 — A LITTLE LOST</p><h1>ページが見つかりません。</h1><p>お探しのページは移動したか、存在しないようです。</p><a class="button primary" href={getRelativeLocaleUrl('ja', '')}>ホームに戻る<span aria-hidden="true">↗</span></a></section>
+</Layout>
