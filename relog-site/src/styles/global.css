@@ -89,6 +89,7 @@
   .wordmark { display: inline-flex; align-items: center; flex-shrink: 0; font: 600 27px/1.2 var(--sans); letter-spacing: -.8px; gap: 0; }
   .wordmark img { width: 64px; height: 64px; object-fit: contain; }
   .eyebrow { font-size: 10px; font-weight: 500; letter-spacing: .15em; line-height: 1.7; display: flex; align-items: center; gap: 9px; }
+  .tiny-star, .heading-flower, .closing-doodle { font-variant-emoji: text; }
   .tiny-star { color: var(--primary); font-size: 20px; line-height: 1; }
   .accent-text { text-decoration: underline; text-decoration-color: var(--primary); text-decoration-thickness: .075em; text-underline-offset: .18em; }
   .button { display: inline-flex; justify-content: center; align-items: center; gap: 30px; min-height: 49px; padding: 13px 22px; border-radius: 5px; font-size: 13px; line-height: 1.7; transition: background .2s, color .2s; }
